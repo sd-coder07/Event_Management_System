@@ -1,0 +1,33 @@
+# Apache Configuration for Event Management System
+
+# Enable rewrite engine
+RewriteEngine On
+
+# Prevent directory browsing
+Options -Indexes
+
+# Protect config files
+<FilesMatch "^(database\.php|session\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Set default character encoding
+AddDefaultCharset UTF-8
+
+# Increase upload file size limit (optional)
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+
+# Enable error logging (disable display errors in production)
+php_flag display_errors off
+php_flag log_errors on
+
+# Set session timeout (30 minutes)
+php_value session.gc_maxlifetime 1800
+
+# Prevent access to hidden files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

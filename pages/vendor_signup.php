@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Signup - Event Management System</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card" style="max-width: 600px;">
+            <div class="header-title" style="background-color: #4a7fc1; color: white; padding: 15px; border-radius: 5px; margin-bottom: 30px;">
+                Event Management System
+            </div>
+            
+            <?php
+            session_start();
+            if (isset($_SESSION['message'])) {
+                $type = $_SESSION['message_type'] ?? 'info';
+                $alertClass = 'alert-' . $type;
+                echo "<div class='alert $alertClass'>{$_SESSION['message']}</div>";
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+            }
+            ?>
+            
+            <form action="auth/vendor_signup_process.php" method="POST" onsubmit="return validateSignupForm(this)">
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Vendor" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Vendor" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" placeholder="Vendor" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select name="category" class="form-control" required>
+                        <option value="">Drop Down</option>
+                        <option value="Catering">* Catering</option>
+                        <option value="Florist">* Florist</option>
+                        <option value="Decoration">* Decoration</option>
+                        <option value="Lighting">* Lighting</option>
+                    </select>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+            </form>
+            
+            <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd;">
+                <p style="color: #666;">Already have an account?</p>
+                <a href="vendor_login.php" class="btn btn-secondary">Login</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../assets/js/validation.js"></script>
+</body>
+</html>

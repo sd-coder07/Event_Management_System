@@ -1,0 +1,21 @@
+# Uploads directory with user-generated content
+uploads/*
+!uploads/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log
+
+# Optional: Comment out if you want to include database config
+# config/database.php
